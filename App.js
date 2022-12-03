@@ -1,20 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import HomeScreen from '../obligatorio2/src/screens/Home.js'
+import EventoPersonaje from "./src/screens/EventoPersonaje.js";
+import DetallePersonaje from "./src/screens/DetallePersonaje.js"
+import DetalleDelEvento from "./src/screens/DetalleDelEvento.js";
 
+const Stack = createNativeStackNavigator();
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          title: "Marvel App",
+        }}>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="EventoPersonaje" component={EventoPersonaje} />
+        <Stack.Screen name="DetallePersonaje" component={DetallePersonaje} />
+        <Stack.Screen name="DetalleDelEvento" component={DetalleDelEvento} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
