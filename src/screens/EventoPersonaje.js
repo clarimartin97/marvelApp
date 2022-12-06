@@ -1,8 +1,9 @@
 import React from 'react'
 import { View, StyleSheet, ActivityIndicator, FlatList, Text, TouchableOpacity } from 'react-native'
 import StyledText from '../componentes/StyledText.jsx'
-import { Button, Icons, Image } from "@rneui/themed";
+import { Button, Image, Icon } from "@rneui/themed";
 import { useEffect, useState } from "react";
+import { MaterialCommunityIcons } from "@expo/vector-icons"
 
 
 function EventoPersonaje(props) {
@@ -39,7 +40,7 @@ function EventoPersonaje(props) {
             <TouchableOpacity onPress={() => { navegarADetalleDelEvento(`${item.thumbnail.path}.${item.thumbnail.extension}`, item.title, item.start, item.end, item.description, item.characters.available) }}>
                 <View style={styles.container}>
                     <Image source={{ uri: `${item.thumbnail.path}.${item.thumbnail.extension}` }} style={styles.image} PlaceholderContent={<ActivityIndicator size={30} color="#F1464C" />} />
-                    <StyledText>{item.title}</StyledText>
+                    <StyledText fontWeight='bold' color='primary' style={styles.tituloNombre}>{item.title}</StyledText>
                 </View>
             </TouchableOpacity>
         )
@@ -48,7 +49,11 @@ function EventoPersonaje(props) {
     return (
         <View style={styles.container}>
             <View>
-                <Button title='Ir al inicio' onPress={navegarAHome} />
+                <Button style={styles.button} type="outline" size="sm" onPress={navegarAHome} > <Icon
+                    name="home"
+                    size={20}
+                    color="blue"
+                /> </Button>
                 <FlatList
                     data={eventos}
                     keyExtractor={keyExtractor}
@@ -63,14 +68,23 @@ function EventoPersonaje(props) {
 
 const styles = StyleSheet.create({
     image: {
-        width: 65,
-        height: 65,
-        borderRadius: 4,
-        alignContent: 'center'
+        width: 300,
+        height: 300,
+        borderRadius: 14,
     },
     container: {
-        alignContent: 'center',
-        margin: 37
+        padding: 20,
+        paddingBottom: 10,
+        paddingTop: 20,
+
+    },
+    tituloNombre: {
+        fontSize: 30,
+        fontFamily: "System",
+        marginBottom: 30,
+    },
+    button: {
+        width: 60
     }
 })
 

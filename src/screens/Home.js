@@ -1,9 +1,4 @@
-export const urlBase = "https://gateway.marvel.com/v1/public/characters"
-const timeZone = "ts=1000";
-const apikey = "&apikey=b6847664cfd533605e325588b62af044";
-const hash = "&hash=4990c9ec6007b3a745c1bbc20f22b7a3";
-const limit = "&limit=100";
-export const eventos = "events=321,314,315";
+import { urlBase, timeZone, apikey, hash, limit, eventos } from "../constantes.js";
 import { StyleSheet, Text, TouchableOpacity, View, FlatList, TextInput } from "react-native";
 import { Image } from "@rneui/themed";
 import { useEffect, useState } from "react";
@@ -29,27 +24,17 @@ function HomeScreen(props) {
     const renderItem = ({ item, key }) => {
         return (
             <TouchableOpacity onPress={() => {
-                navegarADetallePersonaje(item) //este item es personaje
-            }
-            }
-                style={styles.card}>
-                <View>
+                navegarADetallePersonaje(item)
+            }} style={styles.card}>
+                <View >
                     <Image style={styles.image} source={{ uri: `${item.thumbnail.path}.${item.thumbnail.extension}` }} />
 
                 </View>
-                <View style={{ justifyContent: "center" }}>
+                <View style={styles.nombre}>
                     <StyledText align="start" fontWeight="bold" >
                         {item.name}
                     </StyledText>
 
-                </View>
-                <View style={{ justifyContent: "center" }}>
-                    <StyledText color="secondary" align="end">
-                        Appears in:
-                    </StyledText>
-                    <StyledText color="secondary" align="end">
-                        {item.comics.available} comics
-                    </StyledText>
                 </View>
             </TouchableOpacity>
         )
@@ -75,10 +60,10 @@ function HomeScreen(props) {
     const personasFiltradas = getPersonasFiltradas();
     return (
         <View style={styles.container}>
-            <Text>
-                Bienvenido a la pagina de Marvel
-            </Text>
-            <TextInput style={styles.input} value={textoDeInput} onChangeText={busquedaDePersonajes} />
+            <StyledText align="start" fontWeight="bold" >
+                Buscar personajes:
+            </StyledText>
+            <TextInput placeholder="Buscar.." style={styles.input} value={textoDeInput} onChangeText={busquedaDePersonajes} />
 
             <View>
                 <FlatList
@@ -93,6 +78,10 @@ function HomeScreen(props) {
 }
 
 const styles = StyleSheet.create({
+    nombre: {
+        justifyContent: "center",
+        paddingLeft: 10
+    },
     modalidad: {
         padding: 3,
         color: theme.colors.white,
@@ -103,37 +92,36 @@ const styles = StyleSheet.create({
     },
     card: {
         flexDirection: "row",
-        justifyContent: "space-around",
-        paddingBottom: 2, textAlign: 'center',
+        justifyContent: "space-even",
+        padding: 9,
+        textAlign: 'center',
         fontSize: 16,
         marginVertical: 10,
-        backgroundColor: "#F1464C",
+        backgroundColor: "#FFF",
         color: "white",
-        textAlign: "center",
-        paddingVertical: 5,
         marginBottom: 10,
         borderRadius: 4,
         overflow: "hidden",
     },
     input: {
-        backgroundColor: "white", width: "70%", height: 35, alignItems: "center", borderWidth: 1
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: '#999',
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        marginBottom: 10,
+
     },
     container: {
         padding: 20,
         paddingBottom: 10,
         paddingTop: 10
-
-    },
-    horizontalText: {
-        textAlign: 'center',
-        fontSize: 16,
-        marginVertical: 10,
     },
     image: {
-        width: 65,
-        height: 65,
+        width: 105,
+        height: 105,
         borderRadius: 4,
-        alignContent: 'center'
+        justifyContent: "space-even",
     },
 });
 

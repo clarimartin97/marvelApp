@@ -3,18 +3,20 @@ const theme = {
         textPrimary: '#24292e',
         textSecondary: '#586069',
         primary: '#0366d6',
-        white: '#fff'
+        white: '#fff',
     },
     fontSizes: {
         body: 14,
-        subheading: 16
+        subheading: 16,
+        title: 34
     },
     fonts: {
         main: 'System'
     },
     fontWeights: {
         normal: '400',
-        bold: '700'
+        bold: '700',
+
     }
 }
 export default theme

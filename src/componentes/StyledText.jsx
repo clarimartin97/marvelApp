@@ -21,6 +21,9 @@ const styles = StyleSheet.create({
   subheading: {
     fontSize: theme.fontSizes.subheading,
   },
+  title: {
+    fontSize: theme.fontSizes.title,
+  },
   textAlignCenter: {
     textAlign: "center",
   },

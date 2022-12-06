@@ -1,9 +1,9 @@
 import React from 'react'
 import Moment from 'moment';
-import { View, StyleSheet, ActivityIndicator, FlatList, TouchableOpacity } from 'react-native'
-import StyledText from '../componentes/StyledText.jsx'
-import { Button, Icons, Image } from "@rneui/themed";
-import { useEffect, useState } from "react";
+import { View, StyleSheet, ActivityIndicator, TouchableOpacity, ScrollView } from 'react-native';
+import StyledText from '../componentes/StyledText.jsx';
+import { Button, Image, Icon } from "@rneui/themed";
+import { Octicons } from '@expo/vector-icons';
 
 
 function DetalleDelEvento(props) {
@@ -14,41 +14,69 @@ function DetalleDelEvento(props) {
     const navegarAHome = () => {
         navigation.navigate("Home")
     }
-
-
     return (
-        <View style={styles.container}>
-            <View>
-                <Button title='Ir al inicio' onPress={navegarAHome} />
+        <ScrollView>
+            <Button style={styles.button} type="outline" size="sm" onPress={navegarAHome} > <Icon
+                name="home"
+                size={20}
+                color="blue"
+            /> </Button>
+            <View style={styles.container}>
 
-                <TouchableOpacity>
+
+                <TouchableOpacity >
                     <View style={styles.container}>
                         <Image source={{ uri: fotoEvento }} style={styles.image} PlaceholderContent={<ActivityIndicator size={30} color="#F1464C" />} />
-                        <StyledText>{nombreEvento}</StyledText>
-                        <StyledText>{Moment(fechaInicioEvento).format('d MMM yyyy')}</StyledText>
-                        <StyledText>{Moment(fechaFinEvento).format('d MMM yyyy')}</StyledText>
-                        <StyledText>{descripcionEvento}</StyledText>
-                        <StyledText>{cantidadPersonajesEvento}</StyledText>
+                        <StyledText style={styles.tituloNombre} fontWeight='bold' >{nombreEvento}</StyledText>
+                        <View style={styles.direccion}>
+                            <StyledText fontWeight='bold' >{Moment(fechaInicioEvento).format('d MMM yyyy')} - </StyledText>
+                            <StyledText fontWeight='bold'>{Moment(fechaFinEvento).format('d MMM yyyy')}</StyledText>
+                        </View>
+                        <StyledText color='primary' fontSize='subheading' fontWeight='bold' >{descripcionEvento}</StyledText>
+                        <StyledText ><Icon
+                            name="star"
+                            size={22}
+                            color="blue"
+                        /> Personajes en el evento: {cantidadPersonajesEvento}</StyledText>
                     </View>
                 </TouchableOpacity>
 
             </View>
 
-        </View>
+        </ScrollView>
     )
 
 }
 
 const styles = StyleSheet.create({
     image: {
-        width: 65,
-        height: 65,
+        width: 250,
+        height: 250,
         borderRadius: 4,
         alignContent: 'center'
     },
     container: {
         alignContent: 'center',
-        margin: 37
+        margin: 27,
+        backgroundColor: "gray",
+        borderRadius: 18,
+        backgroundColor: "#d8dce3",
+    },
+    button: {
+        width: 60,
+        marginTop: 30,
+        marginLeft: 30,
+    },
+    tituloNombre: {
+        fontSize: 30,
+        fontFamily: "System",
+        color: "#000000",
+        marginBottom: 20,
+    },
+    direccion: {
+        flexDirection: "row",
+        alignSelf: 'center',
+        paddingBottom: 10,
     }
 })
 
