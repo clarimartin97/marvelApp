@@ -13,7 +13,7 @@ function DetallePersonaje(props) {
 
     return (
         <ScrollView style={styles.container} contentContainerStyle={{
-            justifyContent: 'space-evenly', flex: 1/* , alignItems: "center" */
+            justifyContent: 'space-evenly', flex: 1
         }}>
             <Image source={{ uri: `${personaje.thumbnail.path}.${personaje.thumbnail.extension}` }} style={styles.image} PlaceholderContent={<ActivityIndicator size={30} color="#F1464C" />} />
             <View>
@@ -58,28 +58,30 @@ const styles = StyleSheet.create({
         width: 300,
         height: 300,
         borderRadius: 14,
-        margin: 20
+        margin: 20,
+        alignSelf: "center"
     },
     button: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignContent: 'center',
-        justifyContent: 'center',
-        alignItems: "center",
         margin: 20,
+        alignSelf: "center",
     },
     container: {
         padding: 20,
         paddingBottom: 10,
         paddingTop: 20,
+        alignSelf: "center"
     },
     tituloNombre: {
         fontSize: 30,
         fontFamily: "System",
         color: "#000000",
         marginBottom: 30,
+        alignSelf: "center"
     },
     direccion: {
+        alignSelf: "center",
         flexDirection: "row",
         justifyContent: "space-evenly"
     },

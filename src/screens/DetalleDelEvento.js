@@ -3,7 +3,6 @@ import Moment from 'moment';
 import { View, StyleSheet, ActivityIndicator, TouchableOpacity, ScrollView } from 'react-native';
 import StyledText from '../componentes/StyledText.jsx';
 import { Button, Image, Icon } from "@rneui/themed";
-import { Octicons } from '@expo/vector-icons';
 
 
 function DetalleDelEvento(props) {
@@ -53,7 +52,8 @@ const styles = StyleSheet.create({
         width: 250,
         height: 250,
         borderRadius: 4,
-        alignContent: 'center'
+        alignContent: 'center',
+        alignSelf: "center"
     },
     container: {
         alignContent: 'center',
@@ -61,6 +61,8 @@ const styles = StyleSheet.create({
         backgroundColor: "gray",
         borderRadius: 18,
         backgroundColor: "#d8dce3",
+        alignSelf: "center",
+        alignItems: "center"
     },
     button: {
         width: 60,

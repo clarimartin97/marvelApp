@@ -1,31 +1,26 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Image } from "react-native";
 import StyledText from "./StyledText.jsx";
 
 const Footer = () => {
   return (
     <View
       style={{
-        marginTop: 20,
         flexDirection: "column",
         backgroundColor: "#e23636",
       }}
     >
-      {/*   <View>
+      <View style={styles.container}>
         <Image
           style={styles.image}
-          source={require("../assets/logoMarvel.svg")}
+          source={{
+            uri: "https://cdn.iconscout.com/icon/free/png-256/marvel-282124.png",
+          }}
         />
-      </View> */}
-
-      <View style={styles.footerText}>
-        <StyledText fontSize="subheading" fontWeight="bold">
-          Marvel App
-        </StyledText>
       </View>
 
       <View style={styles.footerText}>
-        <StyledText fontSize="subheading">
+        <StyledText fontWeight="bold" fontSize="subheading">
           Copyright @ Clara Martín 2022
         </StyledText>
       </View>
@@ -34,21 +29,18 @@ const Footer = () => {
 };
 
 const styles = StyleSheet.create({
-  /*   image: {
+  image: {
+    padding: 20,
     width: 48,
     height: 48,
-    borderRadius: 4,
-  }, */
+  },
+  container: {
+    alignSelf: "center",
+  },
   footerText: {
-    marginTop: 8,
-    marginBottom: 8,
-    height: 25,
+    height: 29,
     flexDirection: "row",
-    paddingBottom: 10,
-    paddingLeft: 10,
     justifyContent: "center",
-    borderTopLeftRadius: 50,
-    borderTopRightRadius: 50,
   },
 });
 

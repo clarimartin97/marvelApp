@@ -1,9 +1,8 @@
 import React from 'react'
-import { View, StyleSheet, ActivityIndicator, FlatList, Text, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, ActivityIndicator, FlatList, TouchableOpacity } from 'react-native'
 import StyledText from '../componentes/StyledText.jsx'
 import { Button, Image, Icon } from "@rneui/themed";
 import { useEffect, useState } from "react";
-import { MaterialCommunityIcons } from "@expo/vector-icons"
 
 
 function EventoPersonaje(props) {
@@ -73,15 +72,17 @@ const styles = StyleSheet.create({
         borderRadius: 14,
     },
     container: {
-        padding: 20,
+        padding: 10,
         paddingBottom: 10,
         paddingTop: 20,
+        alignSelf: "center"
 
     },
     tituloNombre: {
         fontSize: 30,
         fontFamily: "System",
         marginBottom: 30,
+        alignSelf: "center"
     },
     button: {
         width: 60
