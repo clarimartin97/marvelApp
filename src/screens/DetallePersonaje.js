@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, ActivityIndicator, ScrollView } from 'react-native'
+import { View, StyleSheet, ScrollView } from 'react-native'
 import { Button, Image } from "@rneui/themed";
 import StyledText from "../componentes/StyledText.jsx";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -13,9 +13,9 @@ function DetallePersonaje(props) {
 
     return (
         <ScrollView style={styles.container} contentContainerStyle={{
-            justifyContent: 'space-evenly', flex: 1
+            flexGrow: 1, paddingBottom: 70,
         }}>
-            <Image source={{ uri: `${personaje.thumbnail.path}.${personaje.thumbnail.extension}` }} style={styles.image} PlaceholderContent={<ActivityIndicator size={30} color="#F1464C" />} />
+            <Image source={{ uri: `${personaje.thumbnail.path}.${personaje.thumbnail.extension}` }} style={styles.image} />
             <View>
                 <StyledText style={styles.tituloNombre} fontWeight='bold' >{personaje.name} </StyledText>
             </View>
@@ -44,6 +44,7 @@ function DetallePersonaje(props) {
                     </View>
                 </View>
 
+
             </View>
 
             <Button style={styles.button} title={`Events from ${personaje.name}`} onPress={() => { navegarAEventoPersonaje(personaje.id) }} />
@@ -59,7 +60,8 @@ const styles = StyleSheet.create({
         height: 300,
         borderRadius: 14,
         margin: 20,
-        alignSelf: "center"
+        alignSelf: "center",
+        alignContent: "center"
     },
     button: {
         flexDirection: 'row',
@@ -83,7 +85,7 @@ const styles = StyleSheet.create({
     direccion: {
         alignSelf: "center",
         flexDirection: "row",
-        justifyContent: "space-evenly"
+
     },
     estiloIconos: { flexDirection: "row", justifyContent: "space-evenly", margin: 10 }
 })

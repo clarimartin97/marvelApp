@@ -5,7 +5,7 @@ import EventoPersonaje from "./src/screens/EventoPersonaje.js";
 import DetallePersonaje from "./src/screens/DetallePersonaje.js";
 import DetalleDelEvento from "./src/screens/DetalleDelEvento.js";
 import Footer from "./src/componentes/Footer.jsx";
-import { View, TouchableOpacity } from "react-native";
+import { View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const Stack = createNativeStackNavigator();
@@ -20,7 +20,6 @@ export default function Main() {
             title: "Marvel App",
             headerRight: () => (
               <View>
-                <TouchableOpacity style={{ marginLeft: 15 }} />
                 <MaterialCommunityIcons
                   name="dots-vertical"
                   size={28}
@@ -30,8 +29,6 @@ export default function Main() {
             ),
             headerStyle: {
               height: 150,
-              borderBottomLeftRadius: 50,
-              borderBottomRightRadius: 50,
               backgroundColor: "#e23636",
               shadowColor: "#000",
               elevation: 25,
@@ -45,7 +42,6 @@ export default function Main() {
             title: "Events",
             headerRight: () => (
               <View>
-                <TouchableOpacity style={{ marginLeft: 15 }} />
                 <MaterialCommunityIcons
                   name="dots-vertical"
                   size={28}
@@ -55,8 +51,6 @@ export default function Main() {
             ),
             headerStyle: {
               height: 150,
-              borderBottomLeftRadius: 50,
-              borderBottomRightRadius: 50,
               backgroundColor: "#e23636",
               shadowColor: "#000",
               elevation: 25,
@@ -70,7 +64,6 @@ export default function Main() {
             title: "Character",
             headerRight: () => (
               <View>
-                <TouchableOpacity style={{ marginLeft: 15 }} />
                 <MaterialCommunityIcons
                   name="dots-vertical"
                   size={28}
@@ -80,8 +73,6 @@ export default function Main() {
             ),
             headerStyle: {
               height: 150,
-              borderBottomLeftRadius: 50,
-              borderBottomRightRadius: 50,
               backgroundColor: "#e23636",
               shadowColor: "#000",
               elevation: 25,
@@ -95,7 +86,6 @@ export default function Main() {
             title: "Event Details",
             headerRight: () => (
               <View>
-                <TouchableOpacity style={{ marginLeft: 15 }} />
                 <MaterialCommunityIcons
                   name="dots-vertical"
                   size={28}
@@ -105,8 +95,6 @@ export default function Main() {
             ),
             headerStyle: {
               height: 150,
-              borderBottomLeftRadius: 50,
-              borderBottomRightRadius: 50,
               backgroundColor: "#e23636",
               shadowColor: "#000",
               elevation: 25,

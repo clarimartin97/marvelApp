@@ -1,6 +1,6 @@
 import React from 'react'
 import Moment from 'moment';
-import { View, StyleSheet, ActivityIndicator, TouchableOpacity, ScrollView } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import StyledText from '../componentes/StyledText.jsx';
 import { Button, Image, Icon } from "@rneui/themed";
 
@@ -25,7 +25,7 @@ function DetalleDelEvento(props) {
 
                 <TouchableOpacity >
                     <View style={styles.container}>
-                        <Image source={{ uri: fotoEvento }} style={styles.image} PlaceholderContent={<ActivityIndicator size={30} color="#F1464C" />} />
+                        <Image source={{ uri: fotoEvento }} style={styles.image} />
                         <StyledText style={styles.tituloNombre} fontWeight='bold' >{nombreEvento}</StyledText>
                         <View style={styles.direccion}>
                             <StyledText fontWeight='bold' >{Moment(fechaInicioEvento).format('d MMM yyyy')} - </StyledText>

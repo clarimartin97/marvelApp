@@ -1,14 +1,14 @@
 import { urlBase, timeZone, apikey, hash, limit, eventos } from "../constantes.js";
-import { StyleSheet, Text, TouchableOpacity, View, FlatList, TextInput } from "react-native";
+import { StyleSheet, ActivityIndicator, TouchableOpacity, View, FlatList, TextInput } from "react-native";
 import { Image } from "@rneui/themed";
 import { useEffect, useState } from "react";
 import StyledText from "../componentes/StyledText";
-import theme from "../theme.js";
 
 function HomeScreen(props) {
     const { navigation } = props;
     const [personajes, setPersonajes] = useState([]);
     const [textoDeInput, setTextoDeInput] = useState("");
+    const [loading, setLoading] = useState(false);
     const navegarADetallePersonaje = (personaje) => {
         navigation.navigate("DetallePersonaje", { personaje })
     }
@@ -28,7 +28,6 @@ function HomeScreen(props) {
             }} style={styles.card}>
                 <View >
                     <Image style={styles.image} source={{ uri: `${item.thumbnail.path}.${item.thumbnail.extension}` }} />
-
                 </View>
                 <View style={styles.nombre}>
                     <StyledText align="start" fontWeight="bold" >
@@ -44,9 +43,11 @@ function HomeScreen(props) {
         return (item.id);
     }
     const getData = async () => {
+        setLoading(true);
         const response = await fetch(`${urlBase}?${timeZone}${limit}${apikey}${hash}&${eventos}`)
         const data = await response.json();
         setPersonajes(data.data.results);
+        setLoading(false);
     };
     const getPersonasFiltradas = () => {
         let personasFiltradas = [...personajes];
@@ -58,23 +59,32 @@ function HomeScreen(props) {
         return personasFiltradas;
     };
     const personasFiltradas = getPersonasFiltradas();
-    return (
-        <View style={styles.container}>
-            <StyledText align="start" fontWeight="bold" >
-                Buscar personajes:
-            </StyledText>
-            <TextInput placeholder="Buscar.." style={styles.input} value={textoDeInput} onChangeText={busquedaDePersonajes} />
+    if (loading)
+        return (
 
-            <View>
-                <FlatList
-                    data={personasFiltradas}
-                    keyExtractor={keyExtractor}
-                    renderItem={renderItem}
-                />
+            <View style={{ flex: 1, marginTop: 300 }}>
+
+                <ActivityIndicator size={30} color="#F1464C" />
             </View>
+        )
+    else
+        return (
+            <View style={styles.container}>
+                <StyledText align="start" fontWeight="bold" >
+                    Buscar personajes:
+                </StyledText>
+                <TextInput placeholder="Buscar.." style={styles.input} value={textoDeInput} onChangeText={busquedaDePersonajes} />
 
-        </View>
-    );
+                <View>
+                    <FlatList
+                        data={personasFiltradas}
+                        keyExtractor={keyExtractor}
+                        renderItem={renderItem}
+                    />
+                </View>
+
+            </View>
+        );
 }
 
 const styles = StyleSheet.create({
@@ -82,17 +92,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         paddingLeft: 10
     },
-    modalidad: {
-        padding: 3,
-        color: theme.colors.white,
-        backgroundColor: theme.colors.primary,
-        alignSelf: "flex-start",
-        borderRadius: 4,
-        overflow: "hidden",
-    },
     card: {
         flexDirection: "row",
-        justifyContent: "space-even",
         padding: 9,
         textAlign: 'center',
         fontSize: 16,
@@ -114,14 +115,14 @@ const styles = StyleSheet.create({
     },
     container: {
         padding: 20,
-        paddingBottom: 10,
+        paddingBottom: 100,
         paddingTop: 10
     },
     image: {
         width: 105,
         height: 105,
         borderRadius: 4,
-        justifyContent: "space-even",
+        justifyContent: "space-evenly",
     },
 });
 

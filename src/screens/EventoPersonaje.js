@@ -3,7 +3,7 @@ import { View, StyleSheet, ActivityIndicator, FlatList, TouchableOpacity } from 
 import StyledText from '../componentes/StyledText.jsx'
 import { Button, Image, Icon } from "@rneui/themed";
 import { useEffect, useState } from "react";
-
+import { urlBase, timeZone, apikey, hash, limit, events } from "../constantes.js";
 
 function EventoPersonaje(props) {
     const { navigation, route } = props;
@@ -23,7 +23,7 @@ function EventoPersonaje(props) {
 
     const getEvent = async () => {
         setLoading(true);
-        let url = `https://gateway.marvel.com/v1/public/characters/${personajeId}/events?ts=1000&limit=100&apikey=b6847664cfd533605e325588b62af044&hash=4990c9ec6007b3a745c1bbc20f22b7a3`
+        let url = `${urlBase}/${personajeId}${events}${timeZone}${limit}${apikey}${hash}`
         const response = await fetch(url)
         const data = await response.json();
         setEventos(data.data.results);
@@ -44,24 +44,32 @@ function EventoPersonaje(props) {
             </TouchableOpacity>
         )
     }
+    if (loading)
+        return (
 
-    return (
-        <View style={styles.container}>
-            <View>
-                <Button style={styles.button} type="outline" size="sm" onPress={navegarAHome} > <Icon
-                    name="home"
-                    size={20}
-                    color="blue"
-                /> </Button>
-                <FlatList
-                    data={eventos}
-                    keyExtractor={keyExtractor}
-                    renderItem={renderItem}
-                />
+            <View style={{ flex: 1, marginTop: 300 }}>
+
+                <ActivityIndicator size={30} color="#F1464C" />
             </View>
+        )
+    else
+        return (
+            <View style={styles.container}>
+                <View>
+                    <Button style={styles.button} type="outline" size="sm" onPress={navegarAHome} > <Icon
+                        name="home"
+                        size={20}
+                        color="blue"
+                    /> </Button>
+                    <FlatList
+                        data={eventos}
+                        keyExtractor={keyExtractor}
+                        renderItem={renderItem}
+                    />
+                </View>
 
-        </View>
-    )
+            </View>
+        )
 
 }
 
@@ -86,7 +94,7 @@ const styles = StyleSheet.create({
     },
     button: {
         width: 60
-    }
+    },
 })
 
 export default EventoPersonaje
